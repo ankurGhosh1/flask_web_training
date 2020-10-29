@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+    web:
+        restart: always
+        build: .
+        command: python app.py 0.0.0.0:8000 # test loansystem
+        ports:
+            - 8000:8000
+            
