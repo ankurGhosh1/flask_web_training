@@ -9,6 +9,10 @@ from schema.agent import AgentSchema
 agent_schema = AgentSchema()
 allagents = AgentSchema(many=True)
 
+class Home(Resource):
+    def get(self):
+        return {"message": "Hello World Project Live"}
+
 class Agent(Resource):
     def get(self, name):
         agent = AgentModel.find_by_name(name)

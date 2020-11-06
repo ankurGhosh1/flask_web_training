@@ -12,13 +12,15 @@ load_dotenv(".env")
 from security import authenticate, identity
 from resources.user import UserRegister
 from resources.loan import Loan, LoanList
-from resources.agent import Agent, AgentList
+from resources.agent import Agent, AgentList, Home
 from resources.image import Image
 from libs.image_helper import IMAGE_SET
 from db import db
 from ma import ma
 from oa import oauth
 from resources.github_login import GithubLogin, GithubAuthorize
+from resources.loanrequest import LoanEmi
+#from models.loanemi import LoanEmi
 
 
 app = Flask(__name__)
@@ -43,6 +45,7 @@ def create_tables():
 
 jwt = JWT(app, authenticate, identity)  # /auth
 
+api.add_resource(Home,'/')
 api.add_resource(Agent, '/agent/<string:name>')
 api.add_resource(AgentList, '/agents')
 api.add_resource(Loan, '/loan/<string:name>')
@@ -51,6 +54,7 @@ api.add_resource(UserRegister, '/register')
 api.add_resource(Image, '/upload')
 api.add_resource(GithubLogin, '/gitlogin')
 api.add_resource(GithubAuthorize, '/login/github/authorized')
+api.add_resource(LoanEmi, '/loanemi')
 
 
 
